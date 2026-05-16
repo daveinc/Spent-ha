@@ -38,8 +38,8 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-COPY ha-addon/nginx.conf /etc/nginx/http.d/spent.conf
-COPY ha-addon/run.sh /run.sh
+COPY nginx.conf /etc/nginx/http.d/spent.conf
+COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
 EXPOSE 41234
