@@ -1,0 +1,10 @@
+.git
+.next
+node_modules
+custom_components
+ha-addon
+menubar
+docs
+*.md
+.env*
+coverage
