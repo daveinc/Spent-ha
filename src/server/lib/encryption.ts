@@ -4,7 +4,9 @@ import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 
-const KEY_PATH = path.join(process.cwd(), "data", ".encryption-key");
+const KEY_PATH =
+  process.env.SPENT_KEY_PATH ??
+  path.join(process.cwd(), "data", ".encryption-key");
 const ALGORITHM = "aes-256-gcm";
 const IV_LENGTH = 16;
 

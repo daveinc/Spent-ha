@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const SECURITY_HEADERS = [
-  // Block embedding in iframes from other origins.
-  { key: "X-Frame-Options", value: "DENY" },
+  // Allow HA ingress (proxied through HA's own origin = same-origin from browser POV).
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
   // Stop the browser from MIME-sniffing responses.
   { key: "X-Content-Type-Options", value: "nosniff" },
   // Don't leak the originating URL on outbound links.
@@ -24,7 +24,7 @@ const SECURITY_HEADERS = [
       "font-src 'self' data: https://fonts.gstatic.com",
       "img-src 'self' data: blob: https://www.google.com",
       "connect-src 'self' https://api.anthropic.com http://localhost:11434 ws://127.0.0.1:* ws://localhost:*",
-      "frame-ancestors 'none'",
+      "frame-ancestors 'self'",
       "base-uri 'self'",
       "form-action 'self'",
     ].join("; "),
@@ -32,6 +32,7 @@ const SECURITY_HEADERS = [
 ];
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   serverExternalPackages: ["better-sqlite3", "israeli-bank-scrapers"],
   devIndicators: false,
   async headers() {

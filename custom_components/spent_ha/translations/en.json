@@ -1,0 +1,19 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Spent Finance",
+        "description": "Enter the URL where your Spent Finance app is running.",
+        "data": {
+          "spent_url": "Spent URL"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to Spent. Make sure the app is running and the URL is correct."
+    },
+    "abort": {
+      "already_configured": "This Spent instance is already configured."
+    }
+  }
+}

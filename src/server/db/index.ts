@@ -5,8 +5,10 @@ import path from "path";
 import fs from "fs";
 import { runMigrations } from "./migrate";
 
-const DB_DIR = path.join(process.cwd(), "data");
-const DB_PATH = path.join(DB_DIR, "spent.db");
+const DB_DIR = process.env.SPENT_DB_PATH
+  ? path.dirname(process.env.SPENT_DB_PATH)
+  : path.join(process.cwd(), "data");
+const DB_PATH = process.env.SPENT_DB_PATH ?? path.join(DB_DIR, "spent.db");
 
 function createDatabase(): Database.Database {
   if (!fs.existsSync(DB_DIR)) {

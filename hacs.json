@@ -1,0 +1,7 @@
+{
+  "name": "Spent Finance",
+  "domains": ["spent_ha"],
+  "homeassistant": "2024.1.0",
+  "documentation": "https://github.com/daveinc/Spent-ha",
+  "codeowners": ["@daveinc"]
+}

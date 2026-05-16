@@ -1,0 +1,11 @@
+{
+  "domain": "spent_ha",
+  "name": "Spent Finance",
+  "version": "1.0.0b1",
+  "iot_class": "local_polling",
+  "config_flow": true,
+  "documentation": "https://github.com/daveinc/Spent-ha",
+  "codeowners": ["@daveinc"],
+  "dependencies": [],
+  "requirements": []
+}

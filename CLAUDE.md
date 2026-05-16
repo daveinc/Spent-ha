@@ -110,3 +110,30 @@ To reset state: delete `data/spent.db*` and `data/.encryption-key`.
 ## Original spec
 
 See `~/.claude/plans/personal-finance-tracker-cozy-reef.md` for the full original design spec.
+
+---
+
+## HA Integration (Dave's fork)
+
+This fork adds two HA-specific layers — all work on `dev` branch, never `main`.
+
+### Structure added
+- `ha-addon/` — Docker addon wrapping the Next.js app
+- `custom_components/spent_ha/` — HA custom integration (sensors from /api/home)
+- `repository.json` — HA addon repo metadata
+- `hacs.json` — HACS distribution metadata
+
+### Addon design
+- Dockerfile: Node 20-Alpine multi-stage, Chromium for bank scrapers
+- nginx sidecar strips HA ingress path prefix; Next.js runs on 0.0.0.0:3000
+- SQLite at `/data/spent.db`, encryption key at `/data/encryption.key`
+- `SPENT_DISABLE_CHROMIUM_SANDBOX=true` always set
+- Port 41234 exposed; also available via HA sidebar ingress
+
+### Next.js changes needed for Docker/HA
+- `next.config.ts`: add `output: 'standalone'`
+- `src/server/db/index.ts`: use `process.env.SPENT_DB_PATH` for db path
+- `src/server/lib/encryption.ts`: use `process.env.SPENT_KEY_PATH` for key path
+
+### Allowed Tools
+Bash(git,npm,docker), Read, Edit, Write, Glob, Grep
